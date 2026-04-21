@@ -34,10 +34,11 @@ const t = {
     },
     hero: {
       title: "Carmita Galarza",
-      subtitle: "Licensed Realtor · South Florida",
+      subtitle: "Licensed Realtor · Boca Raton",
       tagline: "Luxury service. Personal touch. Results that speak for themselves.",
       cta1: "Start Your Search",
       cta2: "Meet Carmita",
+      cta3: "Contact Me",
     },
     stats: [
       { value: "10+", label: "Years Experience" },
@@ -48,7 +49,7 @@ const t = {
     about: {
       title: "About Carmita",
       eyebrow: "Who I Am",
-      body: "I'm Carmita Galarza, a dedicated real estate professional in South Florida. With years of experience navigating Florida's dynamic market, I bring expertise, integrity, and a deeply personalized approach to every client relationship. Fluent in English and Spanish, I proudly serve the diverse communities of South Florida with the care and commitment every family deserves.",
+      body: "I'm Carmita Galarza, a dedicated real estate professional in Boca Raton. With years of experience navigating Florida's dynamic market, I bring expertise, integrity, and a deeply personalized approach to every client relationship. Fluent in English and Spanish, I proudly serve the diverse communities of Boca Raton with the care and commitment every family deserves.",
       quote:
         "I don't just help you buy or sell a home — I guide you toward a life you love.",
       tags: ["Buyers", "Sellers", "Investments", "Pre-Construction", "Bilingual"],
@@ -70,7 +71,7 @@ const t = {
         {
           num: "03",
           title: "Investing",
-          desc: "South Florida's market rewards the informed. Whether you're eyeing a rental, a flip, or pre-construction opportunity, I'll walk you through the numbers before you commit.",
+          desc: "Boca Raton's market rewards the informed. Whether you're eyeing a rental, a flip, or pre-construction opportunity, I'll walk you through the numbers before you commit.",
         },
       ],
     },
@@ -94,9 +95,9 @@ const t = {
       eyebrow: "Get in Touch",
       title: "Ready to Start?",
       info: {
-        phone: "+1 (305) 555-0192",
+        phone: "+1 (754) 273-0617",
         email: "carmita@lokationre.com",
-        location: "South Florida, FL",
+        location: "Boca Raton, FL",
         languages: "English & Spanish",
       },
       form: {
@@ -108,6 +109,7 @@ const t = {
         interestOptions: ["Buying a Home", "Selling a Home", "Investing", "Pre-Construction", "Other"],
         message: "Message",
         submit: "Send Message",
+        whatsapp: "Send via WhatsApp",
         placeholder: {
           firstName: "Maria",
           lastName: "Fuentes",
@@ -135,10 +137,11 @@ const t = {
     },
     hero: {
       title: "Carmita Galarza",
-      subtitle: "Agente de Bienes Raíces · South Florida",
+      subtitle: "Agente de Bienes Raíces · Boca Raton",
       tagline: "Servicio de lujo. Toque personal. Resultados que hablan por sí solos.",
       cta1: "Comenzar Búsqueda",
       cta2: "Conoce a Carmita",
+      cta3: "Contáctame",
     },
     stats: [
       { value: "10+", label: "Años de Experiencia" },
@@ -149,7 +152,7 @@ const t = {
     about: {
       title: "Sobre Carmita",
       eyebrow: "Quién Soy",
-      body: "Soy Carmita Galarza, una profesional de bienes raíces dedicada en South Florida. Con años de experiencia navigando el dinámico mercado de Florida, aporto experiencia, integridad y un enfoque profundamente personalizado a cada relación con mis clientes. Fluida en inglés y español, sirvo con orgullo a las diversas comunidades de South Florida con el cuidado y compromiso que cada familia merece.",
+      body: "Soy Carmita Galarza, una profesional de bienes raíces dedicada en Boca Raton. Con años de experiencia navigando el dinámico mercado de Florida, aporto experiencia, integridad y un enfoque profundamente personalizado a cada relación con mis clientes. Fluida en inglés y español, sirvo con orgullo a las diversas comunidades de Boca Raton con el cuidado y compromiso que cada familia merece.",
       quote:
         "No solo te ayudo a comprar o vender una casa — te guío hacia la vida que mereces.",
       tags: ["Compradores", "Vendedores", "Inversiones", "Pre-Construcción", "Bilingüe"],
@@ -171,7 +174,7 @@ const t = {
         {
           num: "03",
           title: "Inversión",
-          desc: "El mercado de South Florida recompensa a quienes están informados. Te guío a través de los números antes de que tomes una decisión.",
+          desc: "El mercado de Boca Raton recompensa a quienes están informados. Te guío a través de los números antes de que tomes una decisión.",
         },
       ],
     },
@@ -195,9 +198,9 @@ const t = {
       eyebrow: "Ponte en Contacto",
       title: "¿Lista para Comenzar?",
       info: {
-        phone: "+1 (305) 555-0192",
+        phone: "+1 (754) 273-0617",
         email: "carmita@lokationre.com",
-        location: "South Florida, FL",
+        location: "Boca Raton, FL",
         languages: "Inglés y Español",
       },
       form: {
@@ -209,6 +212,7 @@ const t = {
         interestOptions: ["Comprar una Casa", "Vender una Casa", "Invertir", "Pre-Construcción", "Otro"],
         message: "Mensaje",
         submit: "Enviar Mensaje",
+        whatsapp: "Enviar por WhatsApp",
         placeholder: {
           firstName: "Maria",
           lastName: "Fuentes",
@@ -290,7 +294,28 @@ export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
   const [hovering, setHovering] = useState(false);
+  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", phone: "", interest: "", message: "" });
   const copy = t[lang];
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleWhatsApp = () => {
+    const { firstName, lastName, email, phone, interest, message } = formData;
+    const text = lang === "es"
+      ? `Hola Carmita, soy ${firstName} ${lastName}.\nTeléfono: ${phone}\nCorreo: ${email}\nInterés: ${interest}\nMensaje: ${message}`
+      : `Hello Carmita, I'm ${firstName} ${lastName}.\nPhone: ${phone}\nEmail: ${email}\nInterest: ${interest}\nMessage: ${message}`;
+    window.open(`https://wa.me/17542730617?text=${encodeURIComponent(text)}`, "_blank");
+  };
+
+  const handleEmail = () => {
+    const { firstName, lastName, email, phone, interest, message } = formData;
+    const body = lang === "es"
+      ? `Nombre: ${firstName} ${lastName}\nTeléfono: ${phone}\nCorreo: ${email}\nInterés: ${interest}\nMensaje: ${message}`
+      : `Name: ${firstName} ${lastName}\nPhone: ${phone}\nEmail: ${email}\nInterest: ${interest}\nMessage: ${message}`;
+    window.open(`mailto:carmita@lokationre.com?subject=Real Estate Inquiry&body=${encodeURIComponent(body)}`);
+  };
 
   // Cursor
   useEffect(() => {
@@ -567,6 +592,18 @@ export default function LandingPage() {
                   {copy.hero.cta2}
                   <ArrowRight size={15} />
                 </button>
+                <a
+                  href="https://wa.me/17542730617"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-7 py-3.5 border border-[#c9a84c50] text-[#f0ece4] text-sm tracking-wide hover:border-[#c9a84c] transition-all duration-200"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="#c9a84c">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  {copy.hero.cta3}
+                </a>
               </motion.div>
             </div>
 
@@ -583,8 +620,8 @@ export default function LandingPage() {
                 <div className="absolute -bottom-4 -right-4 w-full h-full border border-[#c9a84c15]" />
                 <div className="relative w-[320px] sm:w-[380px] lg:w-[420px] aspect-[3/4] overflow-hidden">
                   <Image
-                    src="/images/carmita.png"
-                    alt="Carmita Galarza — Licensed Realtor, South Florida"
+                    src="/images/carmita2.png"
+                    alt="Carmita Galarza — Licensed Realtor, Boca Raton"
                     fill
                     className="object-cover object-top carmita-photo"
                     priority
@@ -599,7 +636,7 @@ export default function LandingPage() {
                     className="text-[#c9a84c] text-xs tracking-widest uppercase"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
-                    South Florida
+                    Boca Raton
                   </p>
                   <p
                     className="text-[#f0ece4] text-sm"
@@ -925,12 +962,7 @@ export default function LandingPage() {
 
               {/* Right — contact form */}
               <FadeIn direction="right" delay={0.1}>
-                <form
-                  action="mailto:carmita@lokationre.com"
-                  method="get"
-                  encType="text/plain"
-                  className="space-y-4"
-                >
+                <form className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label
@@ -944,6 +976,8 @@ export default function LandingPage() {
                         id="firstName"
                         name="firstName"
                         type="text"
+                        value={formData.firstName}
+                        onChange={handleFormChange}
                         placeholder={copy.contact.form.placeholder.firstName}
                         className="w-full bg-[#111111] border border-[#c9a84c20] text-[#f0ece4] text-sm px-4 py-3 focus:outline-none focus:border-[#c9a84c60] transition-colors placeholder:text-[#444]"
                         style={{ fontFamily: "var(--font-inter)" }}
@@ -961,6 +995,8 @@ export default function LandingPage() {
                         id="lastName"
                         name="lastName"
                         type="text"
+                        value={formData.lastName}
+                        onChange={handleFormChange}
                         placeholder={copy.contact.form.placeholder.lastName}
                         className="w-full bg-[#111111] border border-[#c9a84c20] text-[#f0ece4] text-sm px-4 py-3 focus:outline-none focus:border-[#c9a84c60] transition-colors placeholder:text-[#444]"
                         style={{ fontFamily: "var(--font-inter)" }}
@@ -980,6 +1016,8 @@ export default function LandingPage() {
                       id="email"
                       name="email"
                       type="email"
+                      value={formData.email}
+                      onChange={handleFormChange}
                       placeholder={copy.contact.form.placeholder.email}
                       className="w-full bg-[#111111] border border-[#c9a84c20] text-[#f0ece4] text-sm px-4 py-3 focus:outline-none focus:border-[#c9a84c60] transition-colors placeholder:text-[#444]"
                       style={{ fontFamily: "var(--font-inter)" }}
@@ -998,6 +1036,8 @@ export default function LandingPage() {
                       id="phone"
                       name="phone"
                       type="tel"
+                      value={formData.phone}
+                      onChange={handleFormChange}
                       placeholder={copy.contact.form.placeholder.phone}
                       className="w-full bg-[#111111] border border-[#c9a84c20] text-[#f0ece4] text-sm px-4 py-3 focus:outline-none focus:border-[#c9a84c60] transition-colors placeholder:text-[#444]"
                       style={{ fontFamily: "var(--font-inter)" }}
@@ -1015,6 +1055,8 @@ export default function LandingPage() {
                     <select
                       id="interest"
                       name="interest"
+                      value={formData.interest}
+                      onChange={handleFormChange}
                       className="w-full bg-[#111111] border border-[#c9a84c20] text-[#a09888] text-sm px-4 py-3 focus:outline-none focus:border-[#c9a84c60] transition-colors appearance-none"
                       style={{ fontFamily: "var(--font-inter)" }}
                     >
@@ -1039,19 +1081,36 @@ export default function LandingPage() {
                       id="message"
                       name="message"
                       rows={4}
+                      value={formData.message}
+                      onChange={handleFormChange}
                       placeholder={copy.contact.form.placeholder.message}
                       className="w-full bg-[#111111] border border-[#c9a84c20] text-[#f0ece4] text-sm px-4 py-3 focus:outline-none focus:border-[#c9a84c60] transition-colors placeholder:text-[#444] resize-none"
                       style={{ fontFamily: "var(--font-inter)" }}
                     />
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full py-4 bg-[#c9a84c] text-[#0a0a0a] text-sm font-medium tracking-widest uppercase hover:bg-[#e2c97e] transition-colors"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  >
-                    {copy.contact.form.submit}
-                  </button>
+                  <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                    <button
+                      type="button"
+                      onClick={handleEmail}
+                      className="flex-1 py-4 bg-[#c9a84c] text-[#0a0a0a] text-sm font-medium tracking-widest uppercase hover:bg-[#e2c97e] transition-colors flex items-center justify-center gap-2"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      <Mail size={16} />
+                      {copy.contact.form.submit}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleWhatsApp}
+                      className="flex-1 py-4 bg-[#25D366] text-white text-sm font-medium tracking-widest uppercase hover:bg-[#1ebe5d] transition-colors flex items-center justify-center gap-2"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                      </svg>
+                      {copy.contact.form.whatsapp}
+                    </button>
+                  </div>
                 </form>
               </FadeIn>
             </div>
