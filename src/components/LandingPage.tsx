@@ -96,7 +96,7 @@ const t = {
       title: "Ready to Start?",
       info: {
         phone: "+1 (754) 273-0617",
-        email: "carmita@lokationre.com",
+        email: "cgalarealtor@gmail.com",
         location: "Boca Raton, FL",
         languages: "English & Spanish",
       },
@@ -122,8 +122,8 @@ const t = {
     footer: {
       tagline: "Luxury service. Personal touch.",
       license: "Licensed Real Estate Agent · Lokation Real Estate · State of Florida",
-      copyright: "© 2024 Carmita Galarza. All rights reserved.",
-      credit: "Built with Claude Web Builder by",
+      copyright: "© 2026 Carmita Galarza. All rights reserved.",
+      credit: "Built by",
     },
   },
   es: {
@@ -199,7 +199,7 @@ const t = {
       title: "¿Lista para Comenzar?",
       info: {
         phone: "+1 (754) 273-0617",
-        email: "carmita@lokationre.com",
+        email: "cgalarealtor@gmail.com",
         location: "Boca Raton, FL",
         languages: "Inglés y Español",
       },
@@ -225,8 +225,8 @@ const t = {
     footer: {
       tagline: "Servicio de lujo. Toque personal.",
       license: "Agente de Bienes Raíces Licenciada · Lokation Real Estate · Estado de Florida",
-      copyright: "© 2024 Carmita Galarza. Todos los derechos reservados.",
-      credit: "Construido con Claude Web Builder por",
+      copyright: "© 2026 Carmita Galarza. Todos los derechos reservados.",
+      credit: "Construido por",
     },
   },
 };
@@ -314,7 +314,7 @@ export default function LandingPage() {
     const body = lang === "es"
       ? `Nombre: ${firstName} ${lastName}\nTeléfono: ${phone}\nCorreo: ${email}\nInterés: ${interest}\nMensaje: ${message}`
       : `Name: ${firstName} ${lastName}\nPhone: ${phone}\nEmail: ${email}\nInterest: ${interest}\nMessage: ${message}`;
-    window.open(`mailto:carmita@lokationre.com?subject=Real Estate Inquiry&body=${encodeURIComponent(body)}`);
+    window.open(`mailto:cgalarealtor@gmail.com?subject=Real Estate Inquiry&body=${encodeURIComponent(body)}`);
   };
 
   // Cursor
@@ -1186,12 +1186,12 @@ export default function LandingPage() {
             >
               {copy.footer.credit}{" "}
               <a
-                href="https://tododeia.com"
+                href="https://aj-digital-studio.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#666] hover:text-[#c9a84c] transition-colors"
               >
-                Tododeia
+                AJ Digital Studio
               </a>
             </p>
           </div>
